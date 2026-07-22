@@ -60,7 +60,50 @@
           :required-evidence ["Identitätsprüfungsprotokoll (identity-verification-record)"
                               "Mittelherkunftsnachweis (source-of-funds-record)"
                               "Kontoeröffnungsprotokoll (account-opening-record)"
-                              "Sanktionslisten-Screening-Protokoll (sanctions-screening-record)"]}})
+                              "Sanktionslisten-Screening-Protokoll (sanctions-screening-record)"]}
+   ;; ARE (United Arab Emirates) genuinely has a DUAL -- in fact triple --
+   ;; banking-regulation structure, verified directly this session rather
+   ;; than assumed (sources: centralbank.ae and dfsa.ae, both live-blocked
+   ;; by a Cloudflare bot-check this session and read instead via the
+   ;; Internet Archive Wayback Machine per the no-bypass safety rule; also
+   ;; adgm.com, which was directly reachable):
+   ;;   1) the Central Bank of the UAE (CBUAE) licenses & supervises
+   ;;      conventional ("onshore") banks federally, under Decretal
+   ;;      Federal Law No. (14) of 2018 Regarding the Central Bank &
+   ;;      Organization of Financial Institutions and Activities (Part
+   ;;      III Ch. 2, "Licensing", Arts. 64-77 -- confirmed from the
+   ;;      CBUAE's own published law text);
+   ;;   2) Dubai's DIFC (Dubai International Financial Centre) is a
+   ;;      separate financial free zone with its OWN regulator, the DFSA
+   ;;      (Dubai Financial Services Authority), which administers its
+   ;;      own DIFC laws -- chiefly the "Regulatory Law 2004" (confirmed
+   ;;      from dfsa.ae's own "Legislation" page: "The Laws administered
+   ;;      by the DFSA ... Regulatory Law 2004 ..."; DFSA's own footer
+   ;;      describes it as "a body established under Dubai law", i.e.
+   ;;      Dubai/DIFC law, not the federal CBUAE regime);
+   ;;   3) Abu Dhabi's ADGM (Abu Dhabi Global Market) is a THIRD, likewise
+   ;;      distinct free zone with its own regulator, the FSRA (Financial
+   ;;      Services Regulatory Authority) -- confirmed reachable directly
+   ;;      via adgm.com ("ADGM's FSRA Publishes Its 2025 Annual Report
+   ;;      ..."; ADGM is physically on Al Maryah Island, Abu Dhabi, i.e. a
+   ;;      different emirate and legal order from DIFC/Dubai).
+   ;; This entry covers ONLY track (1), the CBUAE onshore/federal regime
+   ;; -- the direct analog of the national regulators already in this
+   ;; catalog (FSA/FinCEN/FCA/BaFin). Tracks (2) DIFC/DFSA and (3)
+   ;; ADGM/FSRA are real, separately-licensed banking regimes but are
+   ;; deliberately left OUT of this entry rather than conflated into it;
+   ;; a `"ARE-DIFC"`/`"ARE-ADGM"`-style key (or similar) would be the
+   ;; honest way to extend coverage to them, with its own citation, not
+   ;; folded silently into this one.
+   "ARE" {:name "United Arab Emirates"
+          :owner-authority "Central Bank of the United Arab Emirates (CBUAE)"
+          :legal-basis "Federal Decree-Law No. (20) of 2018 on Anti-Money Laundering and Combating the Financing of Terrorism and Financing of Illegal Organisations"
+          :national-spec "Onshore/federal licensed-bank customer-due-diligence (CDD) and sanctions-screening requirements under CBUAE supervision -- CBUAE licenses/supervises banks under Decretal Federal Law No. (14) of 2018, and Federal Decree-Law No. (20) of 2018 sets the AML/CFT CDD regime those licensed banks must follow. Does NOT cover DIFC-licensed banks (DFSA / Regulatory Law 2004) or ADGM-licensed banks (FSRA), which are separate regimes -- see the code comment above this entry."
+          :provenance "https://www.centralbank.ae/en/our-operations/anti-money-laundering-aml/docs/uae-decree-federal-law-and-executive-regulation/federal-decree-law-no-20-of-2018-on-anti-money-laundering-and-combatting-the-financing-of-terrorism-and-financing-of-illegal-organisations/"
+          :required-evidence ["Identity-verification record"
+                              "Source-of-funds record"
+                              "Account-opening record"
+                              "Sanctions-screening record"]}})
 
 (defn spec-basis
   "The jurisdiction's requirement map, or nil -- nil means NO spec-basis,

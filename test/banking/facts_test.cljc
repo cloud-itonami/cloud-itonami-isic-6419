@@ -6,6 +6,18 @@
   (is (some? (facts/spec-basis "JPN")))
   (is (string? (:provenance (facts/spec-basis "JPN")))))
 
+(deftest are-has-a-spec-basis-shaped-like-every-other-jurisdiction
+  (let [basis (facts/spec-basis "ARE")]
+    (is (some? basis))
+    (is (= "United Arab Emirates" (:name basis)))
+    (is (string? (:owner-authority basis)))
+    (is (string? (:legal-basis basis)))
+    (is (string? (:national-spec basis)))
+    (is (string? (:provenance basis)))
+    (is (= #{:name :owner-authority :legal-basis :national-spec :provenance :required-evidence}
+           (set (keys basis))))
+    (is (= 4 (count (:required-evidence basis))))))
+
 (deftest unknown-jurisdiction-has-no-fabricated-spec-basis
   (is (nil? (facts/spec-basis "ATL"))))
 
