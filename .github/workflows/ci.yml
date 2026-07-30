@@ -47,6 +47,10 @@ jobs:
           path: orgs/kotoba-lang/langchain
       - uses: actions/checkout@v4
         with:
+          repository: kotoba-lang/kototama
+          path: orgs/kotoba-lang/kototama
+      - uses: actions/checkout@v4
+        with:
           repository: cloud-itonami/cloud-itonami-isic-8291
           path: orgs/cloud-itonami/cloud-itonami-isic-8291
       - uses: actions/setup-java@v4
