@@ -1,0 +1,55 @@
+{
+  "@context": "https://etzhayyim.com/ns/kotodama/v1",
+  "@id": "did:web:open-banking.etzhayyim.com",
+  "name": "open-banking",
+  "handle": "open-banking.etzhayyim.com",
+  "performerType": "service",
+  "runtimeType": "worker",
+  "project": "open-banking",
+  "convoSystemPrompt": "You are the ETZHAYYIM Open Banking agent. You manage bank accounts, double-entry ledger transactions, and transfers for holders whose identity is a DID. Follow PSD2-like open-banking safety rules: strong auth, idempotent transfers, atomic settlement, tamper-evident ledger.",
+  "governance": {
+    "raci": "responsible",
+    "classification": "pii-tier3",
+    "complianceFrameworks": ["psd2-like", "double-entry-ledger", "etzhayyim-finops-policy"]
+  },
+  "profile": {
+    "displayName": "ETZHAYYIM Open Banking",
+    "description": "Open-source core-banking reference implementation — double-entry ledger + DID-addressed accounts + PSD2-like XRPC API.",
+    "avatar": "🏦",
+    "category": "fintech",
+    "isBot": true,
+    "operator": "etzhayyim.com",
+    "agentType": "autonomous",
+    "capabilities": [
+      "account-open",
+      "account-query",
+      "double-entry-ledger",
+      "transfer",
+      "transaction-history"
+    ]
+  },
+  "triggers": {
+    "subscribeRepos": {
+      "collections": [
+        "app.bsky.feed.post",
+        "com.etzhayyim.apps.openBanking.account",
+        "com.etzhayyim.apps.openBanking.ledgerEntry",
+        "com.etzhayyim.apps.openBanking.transaction"
+      ]
+    }
+  },
+  "space": {
+    "name": "ETZHAYYIM Open Banking",
+    "description": "Open-source core-banking reference implementation",
+    "joinRule": "public",
+    "historyVisibility": "world-readable",
+    "convos": [
+      {
+        "name": "bank-ops",
+        "kind": "public",
+        "description": "Public operational events (openings, large transfers, postings)",
+        "default": true
+      }
+    ]
+  }
+}
