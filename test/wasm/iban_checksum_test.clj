@@ -21,7 +21,7 @@
   the ported wasm guest (see wasm/README.md \"Why the source differs\").
   The guest itself only ever sees the resulting digit sequence."
   (:require [clojure.java.io :as io]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [clojure.test :refer [deftest is testing]]
             [kototama.contract :as contract]
             [kototama.tender :as tender]))
@@ -41,7 +41,7 @@
   digits per ISO 7064 MOD 97-10 -- the standard IBAN validation
   rearrangement. Returns the resulting all-digit string."
   [iban]
-  (let [cleaned (str/replace (str/upper-case iban) #"\s" "")
+  (let [cleaned (str/replace (str/upper iban) #"\s" "")
         rearranged (str (subs cleaned 4) (subs cleaned 0 4))]
     (apply str (map char->digits rearranged))))
 

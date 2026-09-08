@@ -33,7 +33,7 @@
   `banking.operation`'s `:actuation/post-settlement`/`:actuation/
   dispatch-interbank-message`, always human-gated -- see README
   `Actuation`)."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (defn- unsigned-certificate
   "Every certificate this actor produces is UNSIGNED -- signature is the
@@ -72,7 +72,7 @@
   digits per ISO 7064 MOD 97-10 -- the standard IBAN validation
   rearrangement."
   [iban]
-  (let [cleaned (str/replace (str/upper-case iban) #"\s" "")
+  (let [cleaned (str/replace (str/upper iban) #"\s" "")
         rearranged (str (subs cleaned 4) (subs cleaned 0 4))]
     (apply str (map char->digits rearranged))))
 
@@ -119,7 +119,7 @@
     (throw (ex-info "settlement: jurisdiction required" {})))
   (when (< sequence 0)
     (throw (ex-info "settlement: sequence must be >= 0" {})))
-  (let [settlement-number (str (str/upper-case jurisdiction) "-SET-" (zero-pad sequence 6))
+  (let [settlement-number (str (str/upper jurisdiction) "-SET-" (zero-pad sequence 6))
         record {"record_id" settlement-number
                 "kind" "settlement-draft"
                 "account_id" account-id
@@ -143,7 +143,7 @@
     (throw (ex-info "interbank-message: jurisdiction required" {})))
   (when (< sequence 0)
     (throw (ex-info "interbank-message: sequence must be >= 0" {})))
-  (let [message-number (str (str/upper-case jurisdiction) "-MSG-" (zero-pad sequence 6))
+  (let [message-number (str (str/upper jurisdiction) "-MSG-" (zero-pad sequence 6))
         record {"record_id" message-number
                 "kind" "interbank-message-draft"
                 "account_id" account-id
