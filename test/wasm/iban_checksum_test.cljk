@@ -2,7 +2,7 @@
   "Hosts wasm/iban_checksum.wasm (compiled from wasm/iban_checksum.kotoba,
   see wasm/README.md) via kototama.tender -- proves banking.registry's
   ISO 7064 MOD 97-10 IBAN checksum recompute (`iban-checksum-invalid?` in
-  src/banking/registry.cljc, independently re-verified by
+  src/banking/registry.cljk, independently re-verified by
   `banking.governor`'s `iban-checksum-invalid-violations`) runs as a real
   WASM guest, not just as JVM Clojure.
 

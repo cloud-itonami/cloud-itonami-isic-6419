@@ -1,12 +1,12 @@
 # wasm/ — kotoba-wasm deployment of the IBAN checksum recompute
 
 `iban_checksum.kotoba` is a port of `banking.registry/iban-checksum-invalid?`'s
-ISO 7064 MOD 97-10 IBAN check-digit recompute (see `src/banking/registry.cljc`
+ISO 7064 MOD 97-10 IBAN check-digit recompute (see `src/banking/registry.cljk`
 lines ~79-105, independently re-verified by `banking.governor`'s
-`iban-checksum-invalid-violations`, `src/banking/governor.cljc` lines ~167-178)
+`iban-checksum-invalid-violations`, `src/banking/governor.cljk` lines ~167-178)
 into the minimal `.kotoba` language subset, compiled to a real WASM module via
 `kotoba wasm emit`, and hosted via `kototama.tender`
-(`test/wasm/iban_checksum_test.clj`).
+(`test/wasm/iban_checksum_test.cljk`).
 
 This follows the same `kotoba wasm emit` -> `kototama.tender` pipeline
 `cloud-itonami-isic-6492`'s `wasm/affordability.kotoba`,
@@ -16,7 +16,7 @@ This follows the same `kotoba wasm emit` -> `kototama.tender` pipeline
 (ADR-2607062330 addendum 5) — the sixth sibling actor's hot-path decision
 function ported to real WASM, and the FIRST of the six to be a checksum
 recompute rather than a ceiling/threshold/ratio/formula comparison (see this
-repo's own `src/banking/registry.cljc` ns docstring: this actor was
+repo's own `src/banking/registry.cljk` ns docstring: this actor was
 deliberately built around ISO 7064 MOD 97-10 as its first checksum/format-
 validity check family member).
 
@@ -82,7 +82,7 @@ interpreter, same finding every prior sibling documents). The port therefore:
   the IBAN shape regex, the `nil?` guard, or the `store/account` lookup, all
   of which stay in Clojure and never get ported (no strings, no regex, no
   maps, no `nil` in the wasm-compilable subset). The host (in this pass,
-  `test/wasm/iban_checksum_test.clj` itself — see its own docstring) performs
+  `test/wasm/iban_checksum_test.cljk` itself — see its own docstring) performs
   that preprocessing and writes the RESULT (a sequence of decimal digit
   VALUES, not ASCII characters) into the guest's linear memory. This mirrors
   every prior sibling's discipline of porting only the pure ground-truth
@@ -135,7 +135,7 @@ anything the compiler itself places in memory.
 
 ## Test vectors
 
-`test/wasm/iban_checksum_test.clj` uses five standard example/reference
+`test/wasm/iban_checksum_test.cljk` uses five standard example/reference
 IBANs (the ISO 13616 / SWIFT IBAN registry's own canonical worked examples
 for GB, DE, FR, CH) as the "valid" vectors, plus two of those same IBANs
 with one BBAN digit hand-corrupted as the "invalid" vectors. Every vector's
