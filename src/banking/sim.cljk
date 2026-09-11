@@ -1,5 +1,5 @@
 (ns banking.sim
-  "Demo driver -- `clojure -M:dev:run`. Walks a clean account through
+  "Demo driver -- `kbb -M:dev:run`. Walks a clean account through
   intake -> compliance verification -> sanctions screening ->
   settlement-posting proposal (always escalates) -> human approval ->
   commit, then through interbank-message-dispatch proposal (always
