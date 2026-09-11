@@ -10,8 +10,8 @@ This repo holds the business blueprint and operator contracts.
 
 ```bash
 # in kotoba-lang/banking or kotoba-lang/swift:
-clojure -X:test
-clojure -M:lint
+kbb -X:test
+kbb -M:lint
 ```
 
 Keep changes small and include tests for posting balance, IBAN/BIC
