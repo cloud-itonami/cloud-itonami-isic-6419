@@ -40,7 +40,7 @@ Publish: enable GitHub Pages on `main` `/docs`, or any static host.
 ## 4. The Governor: holds unsafe commits
 
 - **Blueprint key:** `monetary-intermediation-governor`
-- **Source:** `src/banking/governor.cljc` — implements spec-basis, evidence-completeness, IBAN checksum (ISO 7064 MOD 97-10), and sanctions-resolution checks
+- **Source:** `src/banking/governor.cljk` — implements spec-basis, evidence-completeness, IBAN checksum (ISO 7064 MOD 97-10), and sanctions-resolution checks
 - **Pattern:** advisor proposes → governor validates against ground truth → phase gates human approval for actuation (settle/dispatch) → immutable audit ledger
 
 ## 5. Claim / go-live
