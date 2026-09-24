@@ -1,0 +1,36 @@
+;; What this vertical's robot physically does, declared for
+;; kotoba.robotics.process (kotoba-lang/robotics). `kbb -M:dev:physics` runs it.
+;;
+;; README "Robotics premise": for other monetary intermediation (ISIC 6419,
+;; deposit-taking banks) a vault-servicing and cash-handling robot handles
+;; the physical movement and custody of value, gated by the independent
+;; Monetary Intermediation Governor. Physical work modelled here: the robot
+;; swapping a full banknote cassette into the ATM safe, and a cash cart
+;; carrying sealed coin bags from the branch vault up the ramp to the
+;; cash-in-transit loading bay.
+;;
+;; Every number without a cited source is marked `estimate` in its :basis.
+;; Replacing an estimate with a sourced value is this bot's growth work.
+{:physics/schema "itonami.physical-ai.spec.v1"
+ :repo "cloud-itonami/cloud-itonami-isic-6419"
+ :cases
+ [{:id :atm-cassette-swap
+   :kind :manipulator
+   :procedure "cash-handling arm lifts a full banknote cassette from the replenishment trolley and slides it into the ATM safe's upper slot"
+   :params {:l1-m 0.60 :l2-m 0.55 :m1-kg 7.0 :m2-kg 5.0
+            :from [0.65 -0.25] :to [0.45 0.45] :duration-s 2.0 :steps 500}
+   :sweep {:param :payload-kg :values [3.0 6.0 9.0 12.0 15.0]}
+   :quantity :peak-tau1-nm
+   :limit {:max 120.0 :basis "estimate: continuous shoulder torque of a ~8 kg-payload collaborative arm class"}
+   :boundary {:lo 0.5 :hi 60.0}}
+  {:id :coin-cart-to-cit-bay
+   :kind :transport
+   :procedure "cash cart carries sealed coin bags 40 m from the branch vault up a 4 deg ramp to the cash-in-transit loading bay"
+   :params {:mass-kg 90.0 :distance-m 40.0 :v-max-mps 1.0 :a-max-mps2 0.4
+            :brake-decel-mps2 1.0 :drive-force-n 400.0 :crr 0.015 :slope-deg 4.0
+            :cog-height-m 0.35 :support-half-length-m 0.35 :payload-cog-height-m 0.45
+            :max-time-s 1200.0}
+   :sweep {:param :payload-kg :values [50.0 100.0 200.0 300.0 400.0]}
+   :quantity :cycle-time-s
+   :limit {:max 60.0 :basis "estimate: the vault-to-van handover leg must fit the armoured crew's one-minute exposure window"}
+   :boundary {:lo 10.0 :hi 800.0}}]}
