@@ -3,7 +3,7 @@
   regress on: `:actuation/post-settlement`/`:actuation/dispatch-
   interbank-message` must NEVER be a member of any phase's `:auto`
   set."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [banking.phase :as phase]))
 
 (deftest post-settlement-never-auto-at-any-phase

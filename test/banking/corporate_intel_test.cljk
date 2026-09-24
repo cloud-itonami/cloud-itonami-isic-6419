@@ -21,7 +21,7 @@
   escalates for a human), here it is a HARD, un-overridable HOLD --
   intentionally MORE conservative, because this repo's own vocabulary
   gives no middle ground between resolved and unresolved."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [langgraph.graph :as g]
             [banking.store :as store]
             [banking.operation :as op]
