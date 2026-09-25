@@ -20,7 +20,7 @@
   vars, because that preprocessing is host-side text munging, NOT part of
   the ported wasm guest (see wasm/README.md \"Why the source differs\").
   The guest itself only ever sees the resulting digit sequence."
-  (:require [clojure.java.io :as io]
+  (:require [kotoba.io :as io]
             [kotoba.lang.text :as str]
             [kotoba.test :refer [deftest is testing]]
             [kototama.contract :as contract]
