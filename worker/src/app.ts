@@ -18,7 +18,7 @@
 //
 // Identity: caller DID is resolved via AUTH_SERVICE (service binding) from
 // the bearer JWT. In dev, AUTH disabled → caller = ownerDid is trusted for
-// testing (see CLAUDE.md §Local Dev).
+// testing (see AGENTS.md §Local Dev).
 //
 // This file is the sole entrypoint (single-file principle). For monorepo
 // TS Native migration, swap the router with @etzhayyim/kotodama-host-sdk
